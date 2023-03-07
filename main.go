@@ -44,7 +44,12 @@ func main() {
 		fmt.Println("Enter your number of tickets:")
 		fmt.Scan(&userTickets)
 
-		if userTickets <= remainingTickets {
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+
+		if isValidName && isValidEmail && isValidTicketNumber {
+			// booking logic
 			remainingTickets = remainingTickets - userTickets
 			bookings = append(bookings, firstName+" "+lastName)
 
@@ -60,9 +65,17 @@ func main() {
 			fmt.Printf("These are all our bookings: %v\n", bookings)
 
 			firstNames := []string{} // create a blank slice
+
 			for _, booking := range bookings {
-				var names = strings.Fields(booking)       // split the string into a slice of strings
-				firstNames = append(firstNames, names[0]) // append the first name to the firstNames slice } fmt.Printf("The first names of bookings are: %v\n", firstNames) // print the first names if remainingTickets == 0 { // if the remaining tickets is 0 then we break out of the loop fmt.Println("Our conference is booked out. Come back next year.") break }
+				var names = strings.Fields(booking)                             // split the string into a slice of strings
+				firstNames = append(firstNames, names[0])                       // append the first name to the firstNames slice }
+				fmt.Printf("The first names of bookings are: %v\n", firstNames) // print the first names
+			}
+
+			if remainingTickets == 0 {
+				// if the remaining tickets is 0 then we break out of the loop
+				fmt.Println("Our conference is booked out. Come back next year.")
+				break
 			}
 
 		} else {
@@ -71,7 +84,6 @@ func main() {
 				remainingTickets,
 				userTickets,
 			)
-			continue
 		}
 	}
 }

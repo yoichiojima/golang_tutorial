@@ -77,24 +77,17 @@ func main() {
 				fmt.Println("Our conference is booked out. Come back next year.")
 				break
 			}
-
 		} else {
-
 			if !isValidName {
 				fmt.Println("first name or last name you entered is too short")
 			}
-
 			if !isValidEmail {
 				fmt.Println("email address you entered doesn't contain @ sign")
 			}
-
 			if !isValidTicketNumber {
 				fmt.Println("number of tickets you entered is invalid")
 			}
-
 			fmt.Println("Your input data is invalid. Please try again.")
-
 		}
-
 	}
 }

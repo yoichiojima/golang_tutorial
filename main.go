@@ -9,7 +9,7 @@ func main() {
 	conferenceName := "Go Conference"
 	const conferenceTickets int = 50
 	var remainingTickets uint = 50
-	bookings := []string{}
+	bookings := []string{} // slice
 
 	fmt.Printf(
 		"conferenceTickets is %v, remainingTicket is %v, conferenceName is %v\n",
@@ -44,34 +44,34 @@ func main() {
 		fmt.Println("Enter your number of tickets:")
 		fmt.Scan(&userTickets)
 
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName+" "+lastName)
-
 		if userTickets <= remainingTickets {
-		}
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName+" "+lastName)
 
-		fmt.Printf(
-			"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
-			firstName,
-			lastName,
-			userTickets,
-			email,
-		)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
-		fmt.Printf("These are all our bookings: %v\n", bookings)
+			fmt.Printf(
+				"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
+				firstName,
+				lastName,
+				userTickets,
+				email,
+			)
 
-		firstNames := []string{}
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+			fmt.Printf("These are all our bookings: %v\n", bookings)
 
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
-		}
+			firstNames := []string{} // create a blank slice
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)       // split the string into a slice of strings
+				firstNames = append(firstNames, names[0]) // append the first name to the firstNames slice } fmt.Printf("The first names of bookings are: %v\n", firstNames) // print the first names if remainingTickets == 0 { // if the remaining tickets is 0 then we break out of the loop fmt.Println("Our conference is booked out. Come back next year.") break }
+			}
 
-		fmt.Printf("These are all our bookings: %v\n", bookings)
-
-		if remainingTickets == 0 {
-			fmt.Println("Our conference is booked out. Come back next year.")
-			break
+		} else {
+			fmt.Printf(
+				"We only have %v tickets remaining, so you can't book %v tickets\n",
+				remainingTickets,
+				userTickets,
+			)
+			continue
 		}
 	}
 }
